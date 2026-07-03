@@ -18,7 +18,7 @@ cd duk-integrator-macos
 
 Scriptul:
 1. instalează **Java 8** (Azul Zulu, nativ Apple Silicon) prin Homebrew — dacă lipsește
-2. descarcă **kitul oficial DUKIntegrator direct de la ANAF** (nu redistribuim nimic)
+2. descarcă **kitul oficial DUKIntegrator direct de la ANAF**
 3. aplică cele două corecții de configurare (detalii mai jos)
 4. creează un lansator `DUKIntegrator.command` pe care îl deschizi cu dublu-click
 
@@ -76,12 +76,12 @@ versiune nouă pentru o declarație (ex. D406), descarcă „Soft J" de pe
 [pagina declarației de pe anaf.ro](https://static.anaf.ro/static/10/Anaf/Declaratii_R/406.html)
 și copiază jar-urile din arhivă în `dist/lib/` (suprascriind versiunile vechi).
 
-## Ce NU conține acest repo (și de ce)
+## De ce scriptul doar descarcă lucrurile, nu le include
 
-- **kitul DUKIntegrator** — software proprietar ANAF/MFP, fără licență de redistribuire;
-  scriptul îl descarcă de la sursa oficială
-- **JRE-uri Oracle** — licența Oracle interzice redistribuirea
-- **driverele SafeNet/Thales** — proprietare; link către distribuția legală (certSIGN)
+Kitul DUKIntegrator e software ANAF, fără licență de redistribuire. La fel Java (licența Oracle
+pentru JRE) și driverul SafeNet/Thales pentru token. Din cauza asta repo-ul nu are în el niciun
+`.jar`, `.dmg` sau `.pkg` — scriptul le ia mereu de la sursa oficială, iar pentru driverul de
+token te trimite direct la pagina certSIGN.
 
 ## Compatibilitate testată
 
