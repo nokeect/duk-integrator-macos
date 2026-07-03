@@ -1,5 +1,7 @@
 # DUKIntegrator (ANAF) pe macOS
 
+Realizat de [AXIOM ADVISORY S.R.L.](https://axiomadvisory.ro).
+
 Ghid + script de instalare pentru rularea **DUKIntegrator** — aplicația ANAF de validare,
 generare PDF și semnare a declarațiilor fiscale (SAF-T / D406, D112 etc.) — **nativ pe macOS**,
 inclusiv **semnarea cu token USB** (testat cu SafeNet eToken / certificat AlfaSign, pe Apple Silicon).
@@ -95,5 +97,5 @@ token te trimite direct la pagina certSIGN.
 
 ## Licență
 
-Scriptul și documentația: [MIT](LICENSE). Software-ul ANAF, Java și driverele de token
-aparțin deținătorilor lor și au licențe proprii.
+Scriptul și documentația: [MIT](LICENSE), © AXIOM ADVISORY S.R.L. Software-ul ANAF, Java și
+driverele de token aparțin deținătorilor lor și au licențe proprii.
