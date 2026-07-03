@@ -1,6 +1,6 @@
 # DUKIntegrator (ANAF) pe macOS
 
-Realizat de [AXIOM ADVISORY S.R.L.](https://axiomadvisory.ro).
+Realizat de [AXIOM ADVISORY S.R.L.](https://axiomadvisory.ro)
 
 Ghid + script de instalare pentru rularea **DUKIntegrator** — aplicația ANAF de validare,
 generare PDF și semnare a declarațiilor fiscale (SAF-T / D406, D112 etc.) — **nativ pe macOS**,
