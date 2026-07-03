@@ -1,0 +1,14 @@
+# Niciun binar ANAF / Java / driver nu se comite in acest repo
+dist/
+*.zip
+*.jar
+*.dmg
+*.pkg
+
+# Date sensibile — niciodata in git
+*.pfx
+*.p12
+*.log
+*.trc
+
+.DS_Store
