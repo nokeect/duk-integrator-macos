@@ -15,14 +15,23 @@ inclusiv **semnarea cu token USB** (testat cu SafeNet eToken / certificat AlfaSi
 ```bash
 git clone https://github.com/nokeect/duk-integrator-macos.git
 cd duk-integrator-macos
+
+# D406 (SAF-T): dai calea catre kitul SAF-T descarcat de la ANAF (folder sau .zip)
+./setup.sh "/cale/catre/duk_SAFT_an_luna"
+
+# doar kitul generic ANAF (contine numai validatorul D112)
 ./setup.sh
 ```
 
 Scriptul:
 1. instalează **Java 8** (Azul Zulu, nativ Apple Silicon) prin Homebrew — dacă lipsește
-2. descarcă **kitul oficial DUKIntegrator direct de la ANAF**
-3. aplică cele două corecții de configurare (detalii mai jos)
+2. instalează kitul: copiază kitul tău (ex. SAF-T / D406) în `~/DUKIntegrator_D406`
+   (al doilea argument opțional schimbă folderul), sau, fără argument, descarcă
+   **kitul generic oficial de la ANAF** în `~/DUKIntegrator`
+3. aplică corecțiile de configurare (detalii mai jos) și afișează declarațiile pe care le are kitul
 4. creează un lansator `DUKIntegrator.command` pe care îl deschizi cu dublu-click
+
+La reinstalare, instalarea veche e mutată în `dist.bak.<data>`, nu ștearsă.
 
 Pentru semnarea cu token USB îți trebuie în plus **SafeNet Authentication Client** pentru macOS —
 gratuit, de la certSIGN: [instrucțiuni și download](https://www.certsign.ro/en/support/safenet-installing-the-device-on-macos/)
@@ -70,6 +79,24 @@ brew install --cask zulu@8
 cd <folderul-kitului>/dist
 "$(/usr/libexec/java_home -v 1.8)/bin/java" -Xms250m -Xmx2g -jar DUKIntegrator.jar
 ```
+
+### 4. `Eroare semnare PDF! java.lang.reflect.InvocationTargetException`
+
+**Cauza:** tokenul e blocat de o sesiune PKCS11 rămasă agățată (de obicei după o semnare
+eșuată sau după ce tokenul a stat conectat mult timp). Driverul SafeNet răspunde
+`CKR_FUNCTION_FAILED` și aplicația nu ajunge nici măcar la cererea PIN-ului.
+
+**Fix:** închide complet DUKIntegrator, scoate tokenul din USB, așteaptă câteva secunde,
+reconectează-l (de preferat direct în Mac, nu printr-un hub) și semnează din nou.
+Dacă nici așa nu merge, restart la Mac.
+
+### 5. `Content is not allowed in prolog` la validare
+
+**Cauza:** fișierul încărcat nu e XML-ul declarației. Exemplu: un `*_Inf.XML` care conține
+de fapt logul text al unei validări anterioare.
+
+**Fix:** verifică dacă fișierul începe cu `<?xml`. Dacă ai doar PDF-ul generat anterior,
+XML-ul declarației e atașat în el (în Preview: View → Attachments / în Acrobat: Attachments).
 
 ## Actualizarea validatoarelor de declarații
 
